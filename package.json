@@ -1,6 +1,6 @@
 {
   "name": "@zenso/zenso-vite-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vite plugin for Zenso e-ink plugins: Liquid dev render, manifest/build emit, plugin.zip pack",
   "license": "MIT",
   "author": {
