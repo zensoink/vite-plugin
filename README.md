@@ -58,16 +58,7 @@ The only registered Liquid filter is `asset_url`
 See the template repo for the full plugin-authoring guide
 (conventions, `config_schema`, `data_sources`, deployment).
 
-## Release
-
-```bash
-npm version patch|minor|major  # bumps package.json + creates tag
-git push origin main --tags
-```
-
-Pushing tag `vX.Y.Z` (must equal `package.json` version — the workflow
-asserts this) runs typecheck + tests + build and publishes to npm with
-provenance. Needs a trusted publisher or `NPM_TOKEN` secret.
+See `DEVELOPMENT.md` for the release process.
 
 ## License
 
