@@ -19,6 +19,10 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Node 22 ships npm 10, which cannot do OIDC trusted publishing (needs >= 11.5).
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@11
+
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
