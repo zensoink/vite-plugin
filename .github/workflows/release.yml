@@ -18,7 +18,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
       - run: npm run typecheck
@@ -34,10 +33,11 @@ jobs:
             exit 1
           fi
 
+      # Tokenless publish via npm Trusted Publishing (OIDC).
+      # Requires the repo + this workflow registered as a trusted
+      # publisher on the npm package page. No NPM_TOKEN needed.
       - name: Publish to npm
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
