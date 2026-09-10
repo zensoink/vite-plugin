@@ -69,4 +69,23 @@ describe('buildManifestJson', () => {
       }
     }
   });
+
+  it.each([
+    ['missing id', {}],
+    ['non-string id', { id: 42 }],
+    ['missing slash', { id: 'my-plugin' }],
+    ['uppercase owner', { id: 'Zenso/my-plugin' }]
+  ])('fails fast on invalid id: %s', async (_label, idOverride) => {
+    const cfg = { ...JSON.parse(CFG), ...idOverride };
+    if (!('id' in idOverride)) delete cfg.id;
+    const restore = makeCwd({ 'package.json': PKG, 'zenso.config.json': JSON.stringify(cfg) });
+    try {
+      const { buildManifestJson } = await freshImport<typeof import('../src/manifest.js')>(
+        '../src/manifest.js'
+      );
+      expect(() => buildManifestJson()).toThrow(/zenso\.config\.json.*id/);
+    } finally {
+      restore();
+    }
+  });
 });
