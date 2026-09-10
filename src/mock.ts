@@ -116,7 +116,7 @@ function readJsonFile(filePath: string): Record<string, any> {
     if (!fs.existsSync(filePath)) {
         if (!warnedMissing.has(filePath)) {
             warnedMissing.add(filePath);
-            console.warn(`[zenso] mock file not found: ${filePath} — rendering with empty scope`);
+            console.warn(`[zenso]: mock file not found: ${filePath} — rendering with empty scope`);
         }
         return {};
     }
@@ -153,7 +153,7 @@ export function syncMockSparse() {
 
     if (JSON.stringify(existing) !== JSON.stringify(merged)) {
         fs.writeFileSync(MOCK_PATH, JSON.stringify(merged, null, 2), 'utf-8');
-        console.log(`[zenso] mock synced: ${MOCK_PATH}`);
+        console.log(`[zenso]: mock synced: ${MOCK_PATH}`);
     }
 }
 

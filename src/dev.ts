@@ -74,7 +74,7 @@ export function liquidDevPlugin(opts: { generateMockData: boolean; mock?: Record
                         res.setHeader('Content-Type', 'text/html');
                         return res.end(rendered);
                     } catch (e: any) {
-                        console.error("Error rendering liquid template:", e);
+                        console.error('[zenso]: error rendering liquid template:', e);
                         res.statusCode = 500;
                         return res.end(`<h1>Template Error</h1><pre>${e.message}</pre>`);
                     }
