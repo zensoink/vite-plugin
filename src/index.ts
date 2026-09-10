@@ -37,16 +37,22 @@ export interface ZensoPluginOptions {
      * @defaultValue true
      */
     zip?: boolean | ZipOptions;
+    /**
+     * Build output directory, also the zip input.
+     *
+     * @defaultValue 'dist'
+     */
+    outDir?: string;
 }
 
 /**
  * The single build system for Zenso plugins: fixed `src/*` inputs and fixed
- * `dist` outputs by convention, composed as
+ * outputs by convention, composed as
  * dev plugin → config defaults → build emit → zip.
  * User `build` values in `vite.config.ts` merge over the plugin defaults.
  *
- * No path options exist by design — add a param only when a second real
- * project layout needs it.
+ * Paths stay fixed by design (`outDir` is the single exception) — add
+ * another param only when a second real project layout needs it.
  *
  * @param opts - Plugin options, see {@link ZensoPluginOptions}.
  * @returns The Vite plugin list for `defineConfig({ plugins })`.
@@ -61,15 +67,16 @@ export interface ZensoPluginOptions {
  */
 export function zensoPlugin(opts: ZensoPluginOptions = {}) {
     const generateMockData = opts.generateMockData ?? true;
+    const outDir = opts.outDir ?? OUT_DIR;
 
     return [
         liquidDevPlugin({ generateMockData, mock: opts.mock }),
-        zensoConfigPlugin(),
+        zensoConfigPlugin(outDir),
         zensoBuildPlugin(),
         ...(opts.zip === false
             ? []
             : [zipPack({
-                inDir: OUT_DIR,
+                inDir: outDir,
                 outDir: './',
                 outFileName: ZIP_FILENAME,
                 ...(typeof opts.zip === 'object' ? opts.zip : {})

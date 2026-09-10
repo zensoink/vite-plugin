@@ -65,10 +65,10 @@ export function buildManifestJson(): Record<string, any> {
     // ponytail: mirror only what the backend requires of merged keys (name non-empty,
     // version SemVer); full-manifest validation stays the backend's job
     if (typeof pkg.name !== 'string' || pkg.name.length === 0) {
-        throw new Error('zenso: package.json must provide a non-empty "name" (merged into dist/manifest.json, required by the backend)');
+        throw new Error('[zenso]: package.json must provide a non-empty "name" (merged into dist/manifest.json, required by the backend)');
     }
     if (typeof pkg.version !== 'string' || !/^\d+\.\d+\.\d+$/.test(pkg.version)) {
-        throw new Error('zenso: package.json must provide a SemVer "version" like "1.2.3" (merged into dist/manifest.json, required by the backend)');
+        throw new Error('[zenso]: package.json must provide a SemVer "version" like "1.2.3" (merged into dist/manifest.json, required by the backend)');
     }
     return {
         $schema: 'https://schemas.zenso.ink/v1/plugin-manifest.schema.json',

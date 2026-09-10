@@ -57,3 +57,5 @@ export const MANIFEST_FILENAME = 'manifest.json';
 export const TEMPLATE_FILENAME = 'index.liquid';
 /** Zip archive produced after build. */
 export const ZIP_FILENAME = 'plugin.zip';
+/** Root doc files copied verbatim into the output (and hence the ZIP) when present. */
+export const DOC_FILES = ['README.md', 'LICENSE'];
