@@ -34,12 +34,17 @@ export const MOCK_DEFAULTS_PATH = path.join(ROOT, 'mock/zenso.json');
 /** Dev serves source files with HMR, build uses bundled output. */
 /** Stylesheet href injected into `head` by the dev server. */
 export const DEV_STYLES_HREF = '/src/styles.css';
-/** Stylesheet href injected into `head` at build time. */
-export const PROD_STYLES_HREF = 'assets/styles.css';
+/**
+ * Stylesheet href injected into `head` at build time. A Liquid `asset_url`
+ * expression, not a plain path: the backend inlines it as a `data:` URI at
+ * render time, while plain relative URLs do not survive the screenshot
+ * pipeline (the working contract, cf. zenso-plugin-calendar).
+ */
+export const PROD_STYLES_HREF = `{{ 'assets/styles.css' | asset_url }}`;
 /** Script src injected into `head` by the dev server. */
 export const DEV_MAIN_SRC = '/src/main.ts';
-/** Script src injected into `head` at build time. */
-export const PROD_MAIN_SRC = 'assets/main.js';
+/** Script src injected into `head` at build time. Same `asset_url` contract as {@link PROD_STYLES_HREF}. */
+export const PROD_MAIN_SRC = `{{ 'assets/main.js' | asset_url }}`;
 
 // --- Dist contract (backend-facing names) ---
 
