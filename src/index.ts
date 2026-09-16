@@ -60,7 +60,7 @@ export interface ZensoPluginOptions {
  * ```ts
  * // vite.config.ts
  * import { defineConfig } from 'vite';
- * import { zensoPlugin } from '@zenso/zenso-vite-plugin';
+ * import { zensoPlugin } from '@zenso/vite-plugin';
  *
  * export default defineConfig({ plugins: [zensoPlugin()] });
  * ```

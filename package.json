@@ -1,19 +1,19 @@
 {
-  "name": "@zenso/zenso-vite-plugin",
-  "version": "0.1.4",
+  "name": "@zenso/vite-plugin",
+  "version": "0.1.5",
   "description": "Vite plugin for Zenso e-ink plugins: Liquid dev render, manifest/build emit, plugin.zip pack",
   "license": "MIT",
   "author": {
     "name": "zenso.ink",
     "url": "https://zenso.ink"
   },
-  "homepage": "https://github.com/zensoink/zenso-vite-plugin",
+  "homepage": "https://github.com/zensoink/vite-plugin",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zensoink/zenso-vite-plugin.git"
+    "url": "git+https://github.com/zensoink/vite-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/zensoink/zenso-vite-plugin/issues"
+    "url": "https://github.com/zensoink/vite-plugin/issues"
   },
   "keywords": [
     "vite",

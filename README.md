@@ -1,4 +1,4 @@
-# @zenso/zenso-vite-plugin
+# @zenso/vite-plugin
 
 Vite plugin for [Zenso](https://zenso.ink) e-ink plugins: Liquid dev rendering,
 `manifest.json` / `index.liquid` build emit, and `plugin.zip` packing — by
@@ -11,7 +11,7 @@ so all plugin projects share one build system.
 ## Install
 
 ```bash
-npm i -D @zenso/zenso-vite-plugin
+npm i -D @zenso/vite-plugin
 ```
 
 Requires Node 22+ and `vite` 6 or 7 (peer).
@@ -21,7 +21,7 @@ Requires Node 22+ and `vite` 6 or 7 (peer).
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { zensoPlugin } from '@zenso/zenso-vite-plugin';
+import { zensoPlugin } from '@zenso/vite-plugin';
 
 export default defineConfig({
   plugins: [zensoPlugin({ zip: true, generateMockData: true })]
