@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          registry-url: 'https://registry.npmjs.org'
 
       # Node 22 ships npm 10, which cannot do OIDC trusted publishing (needs >= 11.5).
       - name: Upgrade npm for OIDC support
@@ -39,9 +40,20 @@ jobs:
 
       # Tokenless publish via npm Trusted Publishing (OIDC).
       # Requires the repo + this workflow registered as a trusted
-      # publisher on the npm package page. No NPM_TOKEN needed.
-      - name: Publish to npm
+      # publisher on the npm package page. No NPM_TOKEN needed once set up.
+      # Bootstrap: for the very first publish of a new package name (no npm
+      # page exists yet, so no trusted publisher can be registered), set a
+      # classic `NPM_TOKEN` repo secret and the token step publishes without
+      # provenance instead. Remove the secret after OIDC is registered.
+      - name: Publish to npm (OIDC)
+        if: ${{ secrets.NPM_TOKEN == '' }}
         run: npm publish --provenance --access public
+
+      - name: Publish to npm (token bootstrap)
+        if: ${{ secrets.NPM_TOKEN != '' }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
