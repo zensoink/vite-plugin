@@ -62,4 +62,6 @@ See `DEVELOPMENT.md` for the release process.
 
 ## License
 
-MIT
+This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.
+
+The Apache 2.0 license provides permissive reuse for plugin authoring tools while protecting users and contributors with an explicit patent grant.
